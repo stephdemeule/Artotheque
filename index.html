@@ -9,15 +9,30 @@
 </head>
 <body>
     <!--Menu du site-->
-    <nav> 
-        <ul>
-            <li class="current"><a href="index.php"><div><i class="icon-accueil"></i>Accueil</div></a></li>
-            <li ><a href="liste_categories.php"><div><i class="icon-line-layers"></i>Catalogue</div></a></li>
-            <li ><a href="infos.php"><div><i class="icon-support"></i>Infos pratiques</div></a></li>
-            <li ><a href="moncompte.php"><div><i class="icon-cogs"></i>Mon compte</div></a></li>
-        </ul>
-
-    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="liste_categories.php">Catalogue</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="infos.php">Infos pratiques</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="moncompte.php">Mon compte</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    <nav class="navbar fixed-top navbar-light bg-light"> 
+    
 
     <div id="container">
         
