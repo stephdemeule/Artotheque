@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -8,9 +8,45 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../styles">
 </head>
 <body>
- 
+
+<!--Menu du site-->
+    <div id="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="../index.html">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../Artotheque/Pages/catalogue.html">Catalogue</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="infos.php">Infos pratiques</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="moncompte.php">Mon compte</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    <nav class="navbar fixed-top navbar-light bg-light"> 
+  </div>
+
+<!--Titre page-->
+<section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Catalogue</h1>
+        </div>
+</section>
+
+<div class="container">
 <div class="card-columns">
   <?php
 try
@@ -31,12 +67,29 @@ while ($donnees = $reponse->fetch())
     echo'<p class="card-text">'.$donnees['description'].'</p>';
     echo'  <p class="card-text"><small class="text-muted">'.$donnees['auteur'].'</small></p>
     </div>';
-  echo'</div>';
-    
+    if ($donnees['emprunt']==0)
+      {
+         echo'<form method="post" action="booked.php?id='. $donnees['id'] . '">
+         <input type="submit" class="bouton btn btn-secondary float-right" value="Emprunter" /></form>';
+      }
+      else // SINON
+      {
+          echo' <p id="ond" class="float-right text-danger"> oeuvre non disponible</p>';
+      }
+    echo'</div>';
+  
     echo '<br />';
 }
+
 $reponse->closeCursor();
 ?>
+
+</div>
 </div>
 </body>
+<!-- Footer -->
+<footer class="page-footer font-small bg-light">
+    <div class="text-sm-center py-3"><h6>Projet Artotheque UDEV - IPI 2018<h6><BR>Claire MERCAT<BR>Chantal ROUKA<BR>Stéphane DEMEULEMEESTER
+    </div>
+</footer>
 </html>

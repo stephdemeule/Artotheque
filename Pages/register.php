@@ -33,7 +33,7 @@
 				try
 				{
     // On se connecte à MySQL
-   						 $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');
+   						 $bdd = new PDO('mysql:host=localhost;dbname=artotheque;charset=utf8', 'root', '');
 				}
 				catch(Exception $e)
 				{
@@ -46,7 +46,7 @@
 				
 				$req->execute(array( $username, $password,$email));
 
-				 die('Inscription terminée, vous pouvez vous <a href ="login2_essai.php">connecter</a>');
+				 die('Inscription terminée, vous pouvez vous <a href ="login.php">connecter</a>');
 				
 			
 			}else echo " <span style=\"color:red;\">Les deux mots de passes ne sont pas identiques</span>";
@@ -76,7 +76,7 @@
 <div align="center">
 <h1>  Inscription</h1>
 
-<form method ="post" action="register_3essai.php"> 
+<form method ="post" action="register.php"> 
 <p> Votre nom d'utilisateur</p>
 <input type="text" name="username" required="" value="<?php if (isset($username)){echo $username;} ?>">
 <p> Votre adresse mail</p>
@@ -89,7 +89,7 @@
 <input type="password" name="repeatpassword"><br><br>
 <input type="submit" name="submit" value="Valider">
 </form>
-<a href="login2_essai.php"> connectez vous</a>
+<a href="login.php"> connectez vous</a>
 </div>
 
 

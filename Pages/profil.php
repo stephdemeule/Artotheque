@@ -1,6 +1,6 @@
 <?php
 session_start();
- $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');
+ $bdd = new PDO('mysql:host=localhost;dbname=artotheque;charset=utf8', 'root', '');
 
  if(isset($_GET['id']) and $_GET['id']>0)
  {

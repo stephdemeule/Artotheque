@@ -1,6 +1,6 @@
 <?php
 session_start();
- $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');
+ $bdd = new PDO('mysql:host=localhost;dbname=artotheque;charset=utf8', 'root', '');
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ else
 
 ?>
 
-<form method ="post" action="login2_essai.php"> 
+<form method ="post" action="login.php"> 
 <p> Votre identifiant</p>
 <input type=" text" name="username"  >
 <p>Votre mot de passe</p>
