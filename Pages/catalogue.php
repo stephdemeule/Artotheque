@@ -28,10 +28,10 @@
                   <a class="nav-link" href="../Artotheque/Pages/catalogue.html">Catalogue</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="infos.php">Infos pratiques</a>
+                  <a class="nav-link" href="register.php">Infos pratiques</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="moncompte.php">Mon compte</a>
+                  <a class="nav-link disabled" href="login.php">Mon compte</a>
                 </li>
               </ul>
             </div>
@@ -67,15 +67,7 @@ while ($donnees = $reponse->fetch())
     echo'<p class="card-text">'.$donnees['description'].'</p>';
     echo'  <p class="card-text"><small class="text-muted">'.$donnees['auteur'].'</small></p>
     </div>';
-    if ($donnees['emprunt']==0)
-      {
-         echo'<form method="post" action="booked.php?id='. $donnees['id'] . '">
-         <input type="submit" class="bouton btn btn-secondary float-right" value="Emprunter" /></form>';
-      }
-      else // SINON
-      {
-          echo' <p id="ond" class="float-right text-danger"> oeuvre non disponible</p>';
-      }
+   
     echo'</div>';
   
     echo '<br />';
@@ -89,7 +81,7 @@ $reponse->closeCursor();
 </body>
 <!-- Footer -->
 <footer class="page-footer font-small bg-light">
-    <div class="text-sm-center py-3"><h6> Artotheque UDEV - IPI 2018</h6><BR>Claire MERCAT<BR>Chantal ROUKA<BR>Stéphane DEMEULEMEESTER
+    <div class="text-sm-center py-3"><h6>Projet Artotheque UDEV - IPI 2018<h6><BR>Claire MERCAT<BR>Chantal ROUKA<BR>Stéphane DEMEULEMEESTER
     </div>
 </footer>
 </html>
