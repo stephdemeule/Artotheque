@@ -1,4 +1,4 @@
-<?php $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');?>
+<?php $bdd = new PDO('mysql:host=localhost;dbname=artotheque;charset=utf8', 'root', '');?>
 
 <!DOCTYPE html>
 <html>
