@@ -17,6 +17,12 @@ footer{
     margin-right: 10px;
     margin-bottom: 10px;
 }
+.jumbotron img {
+    width:150px;
+    height: 100%;
+    overflow: auto;
+}
+
 /*.card-img-top{
     height: auto; 
     width: 100%; 
