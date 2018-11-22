@@ -103,9 +103,11 @@ else
 <input type="password" class="form-control" name="password" placeholder="Mot de passe" >
 </div>
 </div>
+<div class="col-sm-10">
 <button type="submit" class="btn btn-primary" name="submit" value="Se connecter">Se connecter</button>
-<p>
 <a href="register.php"> pas encore membre?</a></p>
+</div>
+
 </div>
 	</form>
 </div>
