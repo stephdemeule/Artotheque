@@ -9,7 +9,7 @@ session_start();
 	<meta charset="UTF-8">
 	<title>Document</title>
 
-<!--------modifié le 22--->
+
 </head>
 <body>
 
