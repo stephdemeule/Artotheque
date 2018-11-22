@@ -89,7 +89,7 @@ $reponse->closeCursor();
 </body>
 <!-- Footer -->
 <footer class="page-footer font-small bg-light">
-    <div class="text-sm-center py-3"><h6>Projet Artotheque UDEV - IPI 2018<h6><BR>Claire MERCAT<BR>Chantal ROUKA<BR>Stéphane DEMEULEMEESTER
+    <div class="text-sm-center py-3"><h6> Artotheque UDEV - IPI 2018</h6><BR>Claire MERCAT<BR>Chantal ROUKA<BR>Stéphane DEMEULEMEESTER
     </div>
 </footer>
 </html>
