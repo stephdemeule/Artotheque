@@ -1,68 +1,115 @@
-<?php
-session_start();
- $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');
-?>
+<?php $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
 
-<!--------modifié le 22--->
-</head>
-<body>
+	<title> Inscription</title>
+	<meta charset="utf-8">
+	<?php 
+
+	if (isset($_POST['submit'])) {
+		$username=htmlspecialchars(trim($_POST['username']));
+		$email=htmlspecialchars(trim($_POST['email']));
+		$repeatemail=htmlspecialchars(trim($_POST['repeatemail']));
+		$repeatpassword=sha1($_POST['repeatpassword']);
+		$password=sha1($_POST['password']);
 
 
-
-<?php
-
-	if(isset($_POST['submit']))
-{
-
-$username=htmlspecialchars(trim($_POST['username']));
-$password=sha1($_POST['password']);
-
-if (!empty($username) and !empty($password))
-{
-	$req=$bdd->prepare("select* from users where username=? and password=? ");
-	$req->execute(array($username, $password));
-	$userexist= $req-> rowCount();
-
-	if ($userexist==1)
-	{	
-		$userinfo=$req-> fetch();
-		$_SESSION['id'] = $userinfo['id'];
-		header("location: profil.php?id=".$_SESSION['id']);
 		
-	}
+		if ($username && $password && $repeatpassword && $email && $repeatemail)
+		{
+			$requsername=$bdd->prepare("select * from users where username=?");
+					$requsername->execute(array($username));
+					$usernameexit= $requsername->rowCount();
+					if($usernameexit==0)
+					{
+
+			if ($email==$repeatemail)
+			{
+				if(filter_var($email,FILTER_VALIDATE_EMAIL))
+				{
+
+					$reqmail=$bdd->prepare("select * from users where email=?");
+					$reqmail->execute(array($email));
+					$mailexit= $reqmail->rowCount();
+					if($mailexit==0)
+					{
+
+					if (strlen($password)>4)
+					{			
+
+						if (strlen($password == $repeatpassword))
+					{
+					try
+					{
+    // On se connecte à MySQL
+   						 $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');
+					}
+				catch(Exception $e)
+					{
+    // En cas d'erreur, on affiche un message et on arrête tout
+       				die('Erreur : '.$e->getMessage());
+					}
+
+					$req = $bdd->prepare('INSERT INTO users (username,password,email) values (?,?,?)');
+
+				
+					$req->execute(array( $username, $password,$email));
+
+				 die('Inscription terminée, vous pouvez vous <a href ="login.php">connecter</a>');
+				
+			
+			}else echo " <span style=\"color:red;\">Les deux mots de passes ne sont pas identiques</span>";
 
 
-	else 
-	{
 
-		echo" mot de passe ou identifiant incorrect";
-	}		
+			}else echo "<span style=\"color:red;\"> votre mot de passe est trop court , 6 caractères au minimum</span>";
+
+					}else echo"adressse mail déjà utilisé" ;
+		
+
+
+		}else echo"votre adresse email n'est pas valide";
+
+
+		}else echo" <span style=\"color:red;\">Vos adresses mails ne sont pas identiques</span>";
+
+			
+	} else echo"Nom d'utilisateur déjà utilisé, veuillez en choisir un autre";
+	}else echo  "<span style=\"color:red;\">Veuillez saisir tous les champs</span>";
 }
-else
-{
-	echo" veuillez saisir tous les champs";
-}
-
-}
+		
 
 
-?>
+	?>
+	<meta name="viewport" content=" width=device-width, initial-scale=1">
+</head>
 
-<form method ="post" action="login.php"> 
-<p> Votre identifiant</p>
-<input type=" text" name="username"  >
+
+<body style =" background-color:#ccbcb3 ">
+
+<div align ="center">
+<h1>  Inscription</h1>
+
+<form method ="post" action="register.php"> 
+<p> Votre nom d'utilisateur</p>
+<input type="text" name="username" required="" value="<?php if (isset($username)){echo $username;} ?>">
+<p> Votre adresse mail</p>
+<input type="email" name="email" required="" value="<?php if (isset($email)){echo $email;} ?>">
+<p> Veuillez confirmer votre adresse mail</p>
+<input type="email" name="repeatemail" required="" value="<?php if (isset($repeatemail)){echo $repeatemail;} ?>">
 <p>Votre mot de passe</p>
-<input type="password" name="password" ><br><br>
-<input type="submit" name="submit" value="Se connecter">
-<p>
-<a href="register.php"> pas encore membre?</a></p>
+<input type="password" name=" password" required="">
+<p> Veuillez repéter votre mot de passe</p>
+<input type="password" name="repeatpassword"><br><br>
+<input type="submit" name="submit" value="Valider">
+</form>
+Vous possédez dèjà un compte?<a href="login.php"> connectez vous</a>
 </div>
-	</form>
+
+
 </body>
+
+
 </html>
