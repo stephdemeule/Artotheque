@@ -1,5 +1,4 @@
-
-
+<?php $bdd = new PDO('mysql:host=localhost;dbname=artotheque;charset=utf8', 'root', '');?>
 
 <!DOCTYPE html>
 <html>
@@ -18,33 +17,45 @@
 
 
 		
-		if ($username&&$password&&$repeatpassword&&$email&&$repeatemail)
+		if ($username && $password && $repeatpassword && $email && $repeatemail)
 		{
+			$requsername=$bdd->prepare("select * from users where username=?");
+					$requsername->execute(array($username));
+					$usernameexit= $requsername->rowCount();
+					if($usernameexit==0)
+					{
+
 			if ($email==$repeatemail)
 			{
 				if(filter_var($email,FILTER_VALIDATE_EMAIL))
 				{
-			
-			if (strlen($password)>4)
-			{
 
-				if (strlen($password == $repeatpassword))
-				{
-				try
-				{
+					$reqmail=$bdd->prepare("select * from users where email=?");
+					$reqmail->execute(array($email));
+					$mailexit= $reqmail->rowCount();
+					if($mailexit==0)
+					{
+
+					if (strlen($password)>4)
+					{			
+
+						if (strlen($password == $repeatpassword))
+					{
+					try
+					{
     // On se connecte à MySQL
-   						 $bdd = new PDO('mysql:host=localhost;dbname=artotheque;charset=utf8', 'root', '');
-				}
+   						 $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');
+					}
 				catch(Exception $e)
-				{
+					{
     // En cas d'erreur, on affiche un message et on arrête tout
        				die('Erreur : '.$e->getMessage());
-				}
+					}
 
-				$req = $bdd->prepare('INSERT INTO users (username,password,email) values (?,?,?)');
+					$req = $bdd->prepare('INSERT INTO users (username,password,email) values (?,?,?)');
 
 				
-				$req->execute(array( $username, $password,$email));
+					$req->execute(array( $username, $password,$email));
 
 				 die('Inscription terminée, vous pouvez vous <a href ="login.php">connecter</a>');
 				
@@ -55,16 +66,21 @@
 
 			}else echo "<span style=\"color:red;\"> votre mot de passe est trop court , 6 caractères au minimum</span>";
 
+					}else echo"adressse mail déjà utilisé" ;
+		
+
 
 		}else echo"votre adresse email n'est pas valide";
+
 
 		}else echo" <span style=\"color:red;\">Vos adresses mails ne sont pas identiques</span>";
 
 			
-			}else echo  "<span style=\"color:red;\">Veuillez saisir tous les champs</span>";
+	} else echo"Nom d'utilisateur déjà utilisé, veuillez en choisir un autre";
+	}else echo  "<span style=\"color:red;\">Veuillez saisir tous les champs</span>";
+}
 		
 
-	}
 
 	?>
 	<meta name="viewport" content=" width=device-width, initial-scale=1">
@@ -73,7 +89,7 @@
 
 <body style =" background-color:#ccbcb3 ">
 
-<div align="center">
+<div align ="center">
 <h1>  Inscription</h1>
 
 <form method ="post" action="register.php"> 
@@ -89,7 +105,7 @@
 <input type="password" name="repeatpassword"><br><br>
 <input type="submit" name="submit" value="Valider">
 </form>
-<a href="login.php"> connectez vous</a>
+Vous possédez dèjà un compte?<a href="login.php"> connectez vous</a>
 </div>
 
 
