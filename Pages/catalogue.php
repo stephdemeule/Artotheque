@@ -25,13 +25,13 @@
                   <a class="nav-link" href="../index.html">Accueil <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../Artotheque/Pages/catalogue.html">Catalogue</a>
+                  <a class="nav-link" href="Pages/catalogue.php">Catalogue</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="infos.php">Infos pratiques</a>
+                  <a class="nav-link" href="register.php">Infos pratiques</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="moncompte.php">Mon compte</a>
+                  <a class="nav-link disabled" href="login.php">Mon compte</a>
                 </li>
               </ul>
             </div>
@@ -67,15 +67,7 @@ while ($donnees = $reponse->fetch())
     echo'<p class="card-text">'.$donnees['description'].'</p>';
     echo'  <p class="card-text"><small class="text-muted">'.$donnees['auteur'].'</small></p>
     </div>';
-    if ($donnees['emprunt']==0)
-      {
-         echo'<form method="post" action="booked.php?id='. $donnees['id'] . '">
-         <input type="submit" class="bouton btn btn-secondary float-right" value="Emprunter" /></form>';
-      }
-      else // SINON
-      {
-          echo' <p id="ond" class="float-right text-danger"> oeuvre non disponible</p>';
-      }
+   
     echo'</div>';
   
     echo '<br />';
