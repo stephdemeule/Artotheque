@@ -1,6 +1,6 @@
 <?php
 session_start();
- $bdd = new PDO('mysql:host=localhost;dbname=artotheque;charset=utf8', 'root', '');
+ $bdd = new PDO('mysql:host=localhost;dbname=phpmembre;charset=utf8', 'root', '');
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ session_start();
 	<meta charset="UTF-8">
 	<title>Document</title>
 
-
+<!--------modifié le 22--->
 </head>
 <body>
 
@@ -60,6 +60,9 @@ else
 <p>Votre mot de passe</p>
 <input type="password" name="password" ><br><br>
 <input type="submit" name="submit" value="Se connecter">
+<p>
+<a href="register.php"> pas encore membre?</a></p>
+</div>
 	</form>
 </body>
 </html>
